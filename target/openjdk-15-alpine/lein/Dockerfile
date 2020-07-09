@@ -1,6 +1,6 @@
 FROM openjdk:15-alpine
 
-ENV LEIN_VERSION=2.9.3
+ENV LEIN_VERSION=2.9.4
 ENV LEIN_INSTALL=/usr/local/bin/
 
 WORKDIR /tmp
@@ -9,10 +9,10 @@ WORKDIR /tmp
 RUN \
 apk add --update --no-cache ca-certificates bash tar openssl gnupg && \
 mkdir -p $LEIN_INSTALL && \
-wget -q https://raw.githubusercontent.com/technomancy/leiningen/$LEIN_VERSION/bin/lein-pkg && \
+wget -q https://raw.githubusercontent.com/technomancy/leiningen/master/bin/lein-pkg && \
 echo "Comparing lein-pkg checksum ..." && \
 sha256sum lein-pkg && \
-echo "42e18e8a833b863ddfba1c5565bd5d78b54bcee661ec86e94a8bdc67b1733e63 *lein-pkg" | sha256sum -c - && \
+echo "2b2bc006a3a5711d96bd2dc5ab3628d55ab32aae48dadbaa860a92027f0f7c5e *lein-pkg" | sha256sum -c - && \
 mv lein-pkg $LEIN_INSTALL/lein && \
 chmod 0755 $LEIN_INSTALL/lein && \
 wget -q https://github.com/technomancy/leiningen/releases/download/$LEIN_VERSION/leiningen-$LEIN_VERSION-standalone.zip && \
